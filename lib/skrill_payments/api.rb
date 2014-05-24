@@ -3,6 +3,8 @@ class Api
   #BASE_URL = Rails.application.config.scrill_payments_api_base_url
   BASE_URL = 'https://www.moneybookers.com/app/pay.pl'
 
+  attr_reader :payment
+
   def initialize
     @conection = Faraday.new(url: BASE_URL)
   end
@@ -23,11 +25,17 @@ class Api
     data
   end
 
-
-
   protected
 
-  def params
+  def params(object, attributes)
+    request_params = {}
+    attributes.each do |attribute|
+      request_params[attribute] = object.send(attribute)
+    end
+    request_params.merge(default_params)
+  end
+
+  def default_params
     {
       email:    'michal.macejko1@gmail.com',
       password: 'XYZ'

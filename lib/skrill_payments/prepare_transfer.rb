@@ -1,14 +1,19 @@
 class PrepareTransfer < Api
 
+  ATTRIBUTES = [:amount, :currency, :bnf_email, :subject, :note, :frn_trn_id]
+
+  def initialize(payment)
+    @payment = payment
+    super()
+  end
+
   def params
+    super(payment, ATTRIBUTES)
+  end
+
+  def default_params
     {
-      action:     'prepare',
-      amount:     '29',
-      currency:   'EUR',
-      bnf_email:  'receiver@email.com',
-      subject:    'some subject',
-      note:       'some note',
-      frn_trn_id: '3482734234'
+      action: 'prepare'
     }.merge(super)
   end
 

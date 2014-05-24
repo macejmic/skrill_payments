@@ -1,14 +1,19 @@
 class ExecuteTransfer < Api
 
-  def initialize(sid)
-    @sid = sid
+  ATTRIBUTES = [:sid]
+
+  def initialize(payment)
+    @payment = payment
     super()
   end
 
   def params
+    super(payment, ATTRIBUTES)
+  end
+
+  def default_params
     {
-      action: 'transfer',
-      sid:    @sid
+      action: 'transfer'
     }.merge(super)
   end
 

@@ -1,9 +1,9 @@
 module SkrillPayments
 
-  def self.pay!
-    prepare_transfer  = PrepareTransfer.new.call
-    sid               = prepare_transfer['sid'][0]
-    execute_transfer  = ExecuteTransfer.new(sid).call
+  def self.pay!(payment)
+    prepare_transfer  = PrepareTransfer.new(payment).call
+    payment.sid       = prepare_transfer['sid'][0]
+    execute_transfer  = ExecuteTransfer.new(payment).call
 
     execute_transfer['transaction'][0]['status_msg'][0] == 'processed'
   end
