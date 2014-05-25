@@ -1,13 +1,4 @@
-# [WIP] -> WORK IN PROGRESS
-
-Plase wait day or two to next release.
-Next update will be 26.5.2014
-
-Thank you very much.
-
-# SkrillPayments
-
-TODO: Write a gem description
+# [WIP] SkrillPayments
 
 ## Installation
 
@@ -23,15 +14,77 @@ Or install it yourself as:
 
     $ gem install skrill_payments
 
-Create config initializer for Skrill Payments.
+Create a configuration file for Scrill Payments.
 
-For example, create a file config/initializers/skrill_payments.rb with following content:
+    $ touch config/initializers/scrill_payments.rb
 
-  Rails.configuration.scrill_payments_email     = 'michal.macejko1@gmail.com'
-  Rails.configuration.scrill_payments_password  = '3427342378427834782347832' # MD5
+    ```ruby
+      Rails.configuration.scrill_payments_email     = 'michal.macejko1@gmail.com'
+      Rails.configuration.scrill_payments_password  = '3427342378427834782347832' # MD5
+    ```
 
 ## Usage
 
+  Put this code into your Payment class.
+
+    ```ruby
+      include ScrillPayment
+    ```
+
+  Your payment class must contain all attributes/methods which is required for transfer money.
+
+    ```ruby
+      [:amount, :currency, :recipient_email, :subject, :note, :reference_id]
+      # :reference_id is optional attribute
+    ```
+
+  For example:
+
+  ```ruby
+    class Payment
+
+      include ScrillPayment
+
+      def amount
+        price + fees
+      end
+
+      def currency
+        bank.czech? 'CZK' : 'ENG'
+      end
+
+      def recipient_email
+        client.user
+      end
+
+      def subject
+        'My super subject'
+      end
+
+      def note
+        'Money for your service'
+      end
+
+      def reference_id
+        id
+      end
+
+    end
+  ```
+
+  And in your controller just put the following code:
+
+  ```ruby
+    def pay_for_service
+      payment = Payment.find(params[:id])
+      begin
+        ScrillPayment.pay!(payment)
+      rescue => e
+        # do stuff
+      end
+      redirect_to payments_path
+    end
+  ```
 
 ## Contributing
 

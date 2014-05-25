@@ -1,5 +1,3 @@
-require 'skrill_payments/scrill_payment'
-
 class Payment
   include ScrillPayment
 
