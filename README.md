@@ -74,7 +74,7 @@ With following content.
     def pay_for_service
       payment = Payment.find(params[:id])
       begin
-        ScrillPayment.pay!(payment)
+        ScrillPayments.pay!(payment)
       rescue => e
         # do stuff
       end
