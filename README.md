@@ -20,9 +20,11 @@ Create a configuration file for Scrill Payments.
 
 With following content.
 
-    Rails.configuration.scrill_payments_email     = 'michal.macejko1@gmail.com'
-    Rails.configuration.scrill_payments_password  = '3427342378427834782347832'
-    # your password in MD5
+    SkrillPayments.configure do |config|
+      config.email     = 'michal.macejko1@gmail.com'
+      config.password  = '2347237842346234623476276'
+      # your password in MD5
+    end
 
 ## Usage
 
