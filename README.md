@@ -1,3 +1,10 @@
+# [WIP] -> WORK IN PROGRESS
+
+Plase wait day or two to next release.
+Next update will be 26.5.2014
+
+Thank you very much.
+
 # SkrillPayments
 
 TODO: Write a gem description
