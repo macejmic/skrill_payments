@@ -27,20 +27,15 @@ Create a configuration file for Scrill Payments.
 
   Put this code into your Payment class.
 
-    ```ruby
-      include ScrillPayment
-    ```
+    include ScrillPayment
 
   Your payment class must contain all attributes/methods which is required for transfer money.
 
-    ```ruby
-      [:amount, :currency, :recipient_email, :subject, :note, :reference_id]
-      # :reference_id is optional attribute
-    ```
+    [:amount, :currency, :recipient_email, :subject, :note, :reference_id]
+    # :reference_id is optional attribute
 
   For example:
 
-  ```ruby
     class Payment
 
       include ScrillPayment
@@ -54,7 +49,7 @@ Create a configuration file for Scrill Payments.
       end
 
       def recipient_email
-        client.user
+        client.email
       end
 
       def subject
@@ -70,11 +65,9 @@ Create a configuration file for Scrill Payments.
       end
 
     end
-  ```
 
   And in your controller just put the following code:
 
-  ```ruby
     def pay_for_service
       payment = Payment.find(params[:id])
       begin
@@ -84,7 +77,6 @@ Create a configuration file for Scrill Payments.
       end
       redirect_to payments_path
     end
-  ```
 
 ## Contributing
 
