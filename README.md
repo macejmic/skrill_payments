@@ -18,10 +18,11 @@ Create a configuration file for Scrill Payments.
 
     $ touch config/initializers/scrill_payments.rb
 
-    ```ruby
-      Rails.configuration.scrill_payments_email     = 'michal.macejko1@gmail.com'
-      Rails.configuration.scrill_payments_password  = '3427342378427834782347832' # MD5
-    ```
+With following content.
+
+    Rails.configuration.scrill_payments_email     = 'michal.macejko1@gmail.com'
+    Rails.configuration.scrill_payments_password  = '3427342378427834782347832'
+    # your password in MD5
 
 ## Usage
 
