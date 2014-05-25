@@ -23,9 +23,15 @@ Or install it yourself as:
 
     $ gem install skrill_payments
 
+Create config initializer for Skrill Payments.
+
+For example, create a file config/initializers/skrill_payments.rb with following content:
+
+  Rails.configuration.scrill_payments_email     = 'michal.macejko1@gmail.com'
+  Rails.configuration.scrill_payments_password  = '3427342378427834782347832' # MD5
+
 ## Usage
 
-TODO: Write usage instructions here
 
 ## Contributing
 
