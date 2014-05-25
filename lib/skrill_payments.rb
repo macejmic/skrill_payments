@@ -15,6 +15,7 @@ require 'skrill_payments/version'
 
 # GEM CLASS
 require 'skrill_payments/api'
+require 'skrill_payments/scrill_payment'
 require 'skrill_payments/prepare_transfer'
 require 'skrill_payments/execute_transfer'
 
