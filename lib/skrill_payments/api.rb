@@ -29,8 +29,8 @@ class Api
 
   def default_params
     {
-      email:    Rails.configuration.scrill_payments_email,
-      password: Rails.configuration.scrill_payments_password
+      email:    SkrillPayments.configuration.email,
+      password: SkrillPayments.configuration.password
     }
   end
 
