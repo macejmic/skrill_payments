@@ -1,4 +1,4 @@
-# [WIP] SkrillPayments
+# SkrillPayments
 
 ## Installation
 
