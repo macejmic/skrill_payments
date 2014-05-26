@@ -1,5 +1,5 @@
 class Payment
-  include ScrillPayment
+  include SkrillPayment
 
   def amount
     10

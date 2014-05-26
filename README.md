@@ -14,9 +14,9 @@ Or install it yourself as:
 
     $ gem install skrill_payments
 
-Create a configuration file for Scrill Payments.
+Create a configuration file for Skrill Payments.
 
-    $ touch config/initializers/scrill_payments.rb
+    $ touch config/initializers/skrill_payments.rb
 
 With following content.
 
@@ -28,9 +28,11 @@ With following content.
 
 ## Usage
 
+  ### SEND MONEY USING AN HTTPS REQUEST
+
   Put this code into your Payment class.
 
-    include ScrillPayment
+    include SkrillPayment
 
   Your payment class must contain all attributes/methods which is required for transfer money.
 
@@ -41,14 +43,14 @@ With following content.
 
     class Payment
 
-      include ScrillPayment
+      include SkrillPayment
 
       def amount
         price + fees
       end
 
       def currency
-        bank.czech? 'CZK' : 'ENG'
+        bank.czech? ? 'CZK' : 'ENG'
       end
 
       def recipient_email
@@ -74,8 +76,8 @@ With following content.
     def pay_for_service
       payment = Payment.find(params[:id])
       begin
-        ScrillPayments.pay!(payment)
-      rescue => e
+        SkrillPayments.pay!(payment)
+      rescue SkrillPaymentsException => e
         # do stuff
       end
       redirect_to payments_path

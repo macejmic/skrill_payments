@@ -1,18 +1,16 @@
-class Api
+module Api
 
   BASE_URL = 'https://www.moneybookers.com/app/pay.pl'
 
-  attr_reader :conection, :payment
-
-  def initialize
-    @conection = Faraday.new(url: BASE_URL)
-  end
+  attr_reader :payment
 
   def call
-    response  = conection.get '', params.merge(default_params)
+    response  = connection.get '', params.merge(default_params)
     data      = XmlSimple.xml_in(response.body)
 
-    raise data['error'].inspect if data['error']
+    if data['error']
+      raise SkrillPaymentsException, data['error']
+    end
 
     data
   end
@@ -32,6 +30,12 @@ class Api
       email:    SkrillPayments.configuration.email,
       password: SkrillPayments.configuration.password
     }
+  end
+
+  private
+
+  def connection
+    Faraday.new(url: BASE_URL)
   end
 
 end

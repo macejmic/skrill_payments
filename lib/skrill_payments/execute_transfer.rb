@@ -1,10 +1,11 @@
-class ExecuteTransfer < Api
+class ExecuteTransfer
+
+  include Api
 
   ATTRIBUTES = [:sid]
 
   def initialize(payment)
     @payment = payment
-    super()
   end
 
   def params

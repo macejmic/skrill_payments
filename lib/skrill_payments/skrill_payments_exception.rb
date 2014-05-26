@@ -1,0 +1,2 @@
+class SkrillPaymentsException < StandardError
+end
