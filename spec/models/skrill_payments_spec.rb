@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SkrillPayments do
+describe SkrillPayment do
 
   before do
     @payment = Payment.new
@@ -17,7 +17,7 @@ describe SkrillPayments do
     '<response><error><error_msg>M_AMOUNT</error_msg></error></response>'
   end
 
-  describe '.pay!' do
+  describe '#pay!' do
 
     it 'raise error -> Prepare transfer error' do
 
@@ -25,7 +25,7 @@ describe SkrillPayments do
         with(headers: { 'Accept'=>'*/*' }).
         to_return(status: 200, body: @prepare_error_response, headers: {})
 
-      expect{ SkrillPayments.pay!(@payment) }.to raise_error(SkrillPaymentsException)
+      expect{ @payment.pay! }.to raise_error(SkrillPaymentsException)
     end
 
     it 'raise error -> Execute transfer error' do
@@ -38,7 +38,7 @@ describe SkrillPayments do
         with(headers: { 'Accept'=>'*/*' }).
         to_return(status: 200, body: @execute_error_response, headers: {})
 
-      expect{ SkrillPayments.pay!(@payment) }.to raise_error(SkrillPaymentsException)
+      expect{ @payment.pay! }.to raise_error(SkrillPaymentsException)
     end
 
     context 'success responses' do
@@ -55,12 +55,12 @@ describe SkrillPayments do
       end
 
       it 'returns true' do
-        expect(SkrillPayments.pay!(@payment)).to eq true
+        expect(@payment.pay!).to eq true
       end
 
       it 'set attribute sid for payment' do
 
-        SkrillPayments.pay!(@payment)
+        @payment.pay!
 
         expect(@payment.sid).to_not eq nil
       end

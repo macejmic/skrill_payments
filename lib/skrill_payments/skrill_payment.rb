@@ -10,4 +10,12 @@ module SkrillPayment
     reference_id
   end
 
+  def pay!(account = {})
+    prepare_transfer = PrepareTransfer.new(self, account).call
+
+    self.sid = prepare_transfer['sid'][0]
+
+    !!ExecuteTransfer.new(self, account).call
+  end
+
 end

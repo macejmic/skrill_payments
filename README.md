@@ -76,7 +76,7 @@ With following content.
     def pay_for_service
       payment = Payment.find(params[:id])
       begin
-        SkrillPayments.pay!(payment)
+        payment.pay!
       rescue SkrillPaymentsException => e
         # do stuff
       end

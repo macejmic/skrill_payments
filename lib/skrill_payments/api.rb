@@ -1,8 +1,8 @@
-module Api
+class Api
 
   BASE_URL = 'https://www.moneybookers.com/app/pay.pl'
 
-  attr_reader :payment
+  attr_reader :payment, :account
 
   def call
     response  = connection.get '', params.merge(default_params)
@@ -27,8 +27,8 @@ module Api
 
   def default_params
     {
-      email:    SkrillPayments.configuration.email,
-      password: SkrillPayments.configuration.password
+      email:    account[:email]    || SkrillPayments.configuration.email,
+      password: account[:password] || SkrillPayments.configuration.password
     }
   end
 
