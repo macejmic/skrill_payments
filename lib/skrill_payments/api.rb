@@ -9,7 +9,7 @@ class Api
   end
 
   def call
-    response  = conection.get '', params
+    response  = conection.get '', params.merge(default_params)
     data      = XmlSimple.xml_in(response.body)
 
     raise data['error'].inspect if data['error']
@@ -24,7 +24,7 @@ class Api
     attributes.each do |attribute|
       request_params[attribute] = object.send(attribute)
     end
-    request_params.merge(default_params)
+    request_params
   end
 
   def default_params

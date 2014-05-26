@@ -1,17 +1,18 @@
 require 'spec_helper'
 
-describe PrepareTransfer do
+describe ExecuteTransfer do
 
   before do
     @payment          = Payment.new
-    @prepare_transfer = PrepareTransfer.new(@payment)
+    @payment.sid      = '4234278347827823487'
+    @prepare_transfer = ExecuteTransfer.new(@payment)
   end
 
   it 'returns all required params' do
 
     params = @prepare_transfer.params
 
-    PrepareTransfer::ATTRIBUTES.each do |attribute|
+    ExecuteTransfer::ATTRIBUTES.each do |attribute|
       expect(params.include?(attribute)).to eq true
     end
   end
@@ -23,6 +24,6 @@ describe PrepareTransfer do
 
   it 'must contain specified attributes' do
 
-    expect(PrepareTransfer::ATTRIBUTES).to_not eq nil
+    expect(ExecuteTransfer::ATTRIBUTES).to_not eq nil
   end
 end
