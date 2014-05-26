@@ -1,4 +1,4 @@
-module ScrillPayment
+module SkrillPayment
 
   attr_accessor :sid
 

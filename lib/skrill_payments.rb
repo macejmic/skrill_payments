@@ -1,11 +1,11 @@
 module SkrillPayments
 
   def self.pay!(payment)
-    prepare_transfer  = PrepareTransfer.new(payment).call
-    payment.sid       = prepare_transfer['sid'][0]
-    execute_transfer  = ExecuteTransfer.new(payment).call
+    prepare_transfer = PrepareTransfer.new(payment).call
 
-    execute_transfer['transaction'][0]['status_msg'][0] == 'processed'
+    payment.sid = prepare_transfer['sid'][0]
+
+    !!ExecuteTransfer.new(payment).call
   end
 
   class << self
@@ -27,9 +27,10 @@ require 'skrill_payments/version'
 
 # GEM CLASS
 require 'skrill_payments/api'
-require 'skrill_payments/scrill_payment'
+require 'skrill_payments/skrill_payment'
 require 'skrill_payments/prepare_transfer'
 require 'skrill_payments/execute_transfer'
+require 'skrill_payments/skrill_payments_exception'
 require 'skrill_payments/configuration'
 
 # GEMS

@@ -1,10 +1,11 @@
-class PrepareTransfer < Api
+class PrepareTransfer
+
+  include Api
 
   ATTRIBUTES = [:amount, :currency, :bnf_email, :subject, :note, :frn_trn_id]
 
   def initialize(payment)
     @payment = payment
-    super()
   end
 
   def params
