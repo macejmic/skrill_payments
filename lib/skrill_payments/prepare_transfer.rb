@@ -1,6 +1,4 @@
-class PrepareTransfer
-
-  include Api
+class PrepareTransfer < Api
 
   ATTRIBUTES = [:amount, :currency, :bnf_email, :subject, :note, :frn_trn_id]
 

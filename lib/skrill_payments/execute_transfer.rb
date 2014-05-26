@@ -1,6 +1,4 @@
-class ExecuteTransfer
-
-  include Api
+class ExecuteTransfer < Api
 
   ATTRIBUTES = [:sid]
 

@@ -1,13 +1,5 @@
 module SkrillPayments
 
-  def self.pay!(payment)
-    prepare_transfer = PrepareTransfer.new(payment).call
-
-    payment.sid = prepare_transfer['sid'][0]
-
-    !!ExecuteTransfer.new(payment).call
-  end
-
   class << self
     attr_writer :configuration
   end

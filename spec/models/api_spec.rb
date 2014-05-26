@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-class Dummie
-  include Api
-end
+class Dummie < Api; end
 
 describe Api do
 

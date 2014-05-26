@@ -1,4 +1,4 @@
-module Api
+class Api
 
   BASE_URL = 'https://www.moneybookers.com/app/pay.pl'
 
