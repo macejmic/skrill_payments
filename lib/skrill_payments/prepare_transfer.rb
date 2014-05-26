@@ -2,8 +2,9 @@ class PrepareTransfer < Api
 
   ATTRIBUTES = [:amount, :currency, :bnf_email, :subject, :note, :frn_trn_id]
 
-  def initialize(payment)
+  def initialize(payment, account = {})
     @payment = payment
+    @account = account
   end
 
   def params

@@ -2,8 +2,9 @@ class ExecuteTransfer < Api
 
   ATTRIBUTES = [:sid]
 
-  def initialize(payment)
+  def initialize(payment, account = {})
     @payment = payment
+    @account = account
   end
 
   def params
