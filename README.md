@@ -28,18 +28,18 @@ With following content.
 
 ## Usage
 
-  ### SEND MONEY USING AN HTTPS REQUEST
+### SEND MONEY USING AN HTTPS REQUEST
 
-  Put this code into your Payment class.
+Put this code into your Payment class.
 
     include SkrillPayment
 
-  Your payment class must contain all attributes/methods which is required for transfer money.
+Your payment class must contain all attributes/methods which is required for transfer money.
 
     [:amount, :currency, :recipient_email, :subject, :note, :reference_id]
     # :reference_id is optional attribute
 
-  For example:
+For example:
 
     class Payment
 
@@ -77,6 +77,20 @@ With following content.
       payment = Payment.find(params[:id])
       begin
         payment.pay!
+      rescue SkrillPaymentsException => e
+        # do stuff
+      end
+      redirect_to payments_path
+    end
+
+### SEND MONEY FROM DIFFERENT SKRILL ACCOUNT
+
+If you want to send money from different Skrill account (different email and password than from the config). Just add following params in pay! method.
+  
+    def pay_for_service
+      payment = Payment.find(params[:id])
+      begin
+        payment.pay!(email: 'account_2@macejko.sk', password: 'sadnuasndasdasd')
       rescue SkrillPaymentsException => e
         # do stuff
       end
